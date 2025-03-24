@@ -1,3 +1,30 @@
-#root h1 {
-    color: red;
+.header {
+    background-color: #ffd9e7;
+    border: black;
+    display: block;
+    box-sizing: border-box;
+}
+
+.header ul {
+    display: inline-block;
+    width:100%;
+}
+
+.header > ul > li {
+    display: inline-block;
+    position:relative;
+    vertical-align:top;
+    width:30%;
+}
+
+#lodestone {
+    text-align: left;
+}
+
+#user {
+   text-align: right;
+}
+
+#mogstation {
+    text-align: center;
 }
