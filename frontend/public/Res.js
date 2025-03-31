@@ -1,4 +1,4 @@
-import {CDN_URL} from "./Url.js";
+import { CDN_URL } from "./Url.js";
 const RestaurantCard = (props) => {
   const { resData } = props;
   const {
@@ -10,7 +10,7 @@ const RestaurantCard = (props) => {
     costForTwoString,
     areaName,
   } = resData;
-  const {slaString} = resData.sla;
+  const { slaString } = resData.sla;
   return (
     <div
       className="res-card"
@@ -32,7 +32,7 @@ const RestaurantCard = (props) => {
       <h4>{costForTwoString}</h4>
       <h4>{slaString}</h4>
       <h4>{areaName}</h4>
-      
+
     </div>
   );
 };
