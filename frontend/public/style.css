@@ -4,6 +4,36 @@
   padding: 20px;
   background-color: #f9f9f9;
 }
+button a {
+  cursor: pointer !important;
+}
+/* Button Styles */
+.submit-btn {
+  background-color: #007bff; /* Primary blue */
+  color: #fff; /* White text */
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3; /* Darker blue */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.submit-btn:active {
+  background-color: #004494; /* Even darker blue */
+  transform: scale(0.98); /* Click effect */
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
 /* Search and filter section */
 .search {

@@ -1,15 +1,17 @@
 import Button from "./Button";
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import RestaurantCard from "./Res";
 import Shimmer from "./loader";
 import Search from "./search";
 import * as Urls from "./Url";
+import { toast } from "react-toastify";
+import { AuthContext } from "./AuthContext";
 const Body = () => {
   const [cityname, setCityname] = useState(
     window.sessionStorage.getItem("cityname")
   );
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const user = useContext(AuthContext);
   const [spinner, setSpinner] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [list, setList] = useState([]);
@@ -52,22 +54,28 @@ const Body = () => {
   const fetchSwiggyData = async () => {
     setSpinner(true);
     const ApiUrl = Urls.SWG_API + "&" + city;
-    const data = await fetch(ApiUrl);
-    const dataJson = await data.json();
-    const newObj =
-      dataJson.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
-    const sortedData = sortBy([...newObj]);
-    setResetList([...newObj]);
-    setList(sortedData);
+    try {
+      const data = await fetch(ApiUrl);
+      const dataJson = await data.json();
+      const newObj =
+        dataJson.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+      const sortedData = sortBy([...newObj]);
+      setResetList([...newObj]);
+      setList(sortedData);
+    } catch (error) {
+      toast.error(error);
+      setList([]);
+    }
+
     setSpinner(false);
   };
   useEffect(() => {
-    if (city != "" && isLoggedIn) {
+    if (city != "" && user.user != null) {
       fetchSwiggyData();
     } else {
       setList([]);
     }
-  }, [city, isLoggedIn]);
+  }, [city]);
   useEffect(() => {
     const sortedData = sortBy();
     setList(sortedData);
